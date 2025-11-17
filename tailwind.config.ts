@@ -57,6 +57,17 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        navy: {
+          deep: "hsl(var(--navy-deep))",
+        },
+        slate: {
+          dark: "hsl(var(--slate-dark))",
+        },
+        silver: "hsl(var(--silver))",
+        teal: {
+          neon: "hsl(var(--teal-neon))",
+          glow: "hsl(var(--teal-glow))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -84,6 +95,8 @@ export default {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "fade-in-up": "fadeInUp 0.6s ease-out forwards",
+        "glow-pulse": "glowPulse 2s ease-in-out infinite",
       },
     },
   },
