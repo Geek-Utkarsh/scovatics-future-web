@@ -50,14 +50,13 @@ const Services = () => {
       <Section>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <FeatureCard key={index} {...service} />
+            <FeatureCard key={index} {...service} delay={index * 100} />
           ))}
         </div>
       </Section>
 
-      <Section className="bg-card">
+      <Section className="bg-card" title="Our Approach">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold mb-6 text-center">Our Approach</h2>
           <div className="space-y-6">
             <div className="flex gap-4">
               <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">

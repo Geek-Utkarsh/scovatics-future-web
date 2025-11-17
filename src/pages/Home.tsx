@@ -4,8 +4,11 @@ import FeatureCard from "@/components/FeatureCard";
 import { Brain, TrendingUp, Shield, Zap, Database, LineChart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Home = () => {
+  const { ref: ctaRef, isVisible: ctaVisible } = useScrollAnimation({ threshold: 0.3 });
+
   const features = [
     {
       icon: Brain,
@@ -54,13 +57,18 @@ const Home = () => {
       >
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
-            <FeatureCard key={index} {...feature} />
+            <FeatureCard key={index} {...feature} delay={index * 100} />
           ))}
         </div>
       </Section>
 
       <Section className="bg-card">
-        <div className="max-w-4xl mx-auto text-center">
+        <div
+          ref={ctaRef}
+          className={`max-w-4xl mx-auto text-center transition-all duration-700 ${
+            ctaVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+          }`}
+        >
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Ready to Transform Your Business?
           </h2>

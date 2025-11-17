@@ -1,7 +1,6 @@
 import Hero from "@/components/Hero";
 import Section from "@/components/Section";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import CaseStudyCard from "@/components/CaseStudyCard";
 
 const CaseStudies = () => {
   const cases = [
@@ -46,35 +45,7 @@ const CaseStudies = () => {
       <Section>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {cases.map((study, index) => (
-            <Card key={index} className="bg-gradient-card border-border hover-lift">
-              <CardHeader>
-                <div className="flex justify-between items-start mb-2">
-                  <Badge variant="secondary">{study.industry}</Badge>
-                </div>
-                <CardTitle className="text-2xl">{study.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <h4 className="font-semibold text-sm text-primary mb-2">Challenge</h4>
-                  <p className="text-muted-foreground text-sm">{study.challenge}</p>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-sm text-primary mb-2">Solution</h4>
-                  <p className="text-muted-foreground text-sm">{study.solution}</p>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-sm text-primary mb-2">Results</h4>
-                  <ul className="space-y-1">
-                    {study.results.map((result, i) => (
-                      <li key={i} className="text-muted-foreground text-sm flex items-center">
-                        <span className="w-1.5 h-1.5 rounded-full bg-primary mr-2" />
-                        {result}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </CardContent>
-            </Card>
+            <CaseStudyCard key={index} {...study} delay={(index % 2) * 150} />
           ))}
         </div>
       </Section>
