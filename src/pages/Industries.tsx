@@ -1,6 +1,6 @@
 import Hero from "@/components/Hero";
 import Section from "@/components/Section";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import IndustryCard from "@/components/IndustryCard";
 import { Building2, Heart, ShoppingCart, Factory, Landmark, Rocket } from "lucide-react";
 
 const Industries = () => {
@@ -47,24 +47,9 @@ const Industries = () => {
 
       <Section>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {industries.map((industry, index) => {
-            const Icon = industry.icon;
-            return (
-              <Card key={index} className="bg-gradient-card border-border hover-lift">
-                <CardHeader>
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                    <Icon className="w-6 h-6 text-primary" />
-                  </div>
-                  <CardTitle>{industry.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-muted-foreground">
-                    {industry.description}
-                  </CardDescription>
-                </CardContent>
-              </Card>
-            );
-          })}
+          {industries.map((industry, index) => (
+            <IndustryCard key={index} {...industry} delay={index * 100} />
+          ))}
         </div>
       </Section>
     </>

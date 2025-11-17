@@ -3,9 +3,12 @@ import Section from "@/components/Section";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { MapPin, Clock } from "lucide-react";
+import { MapPin } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Careers = () => {
+  const { ref: statsRef, isVisible: statsVisible } = useScrollAnimation({ threshold: 0.3 });
+
   const openings = [
     {
       title: "Senior Data Scientist",
@@ -60,7 +63,12 @@ const Careers = () => {
       />
 
       <Section>
-        <div className="max-w-4xl mx-auto mb-12">
+        <div
+          ref={statsRef}
+          className={`max-w-4xl mx-auto mb-12 transition-all duration-700 ${
+            statsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <h2 className="text-2xl font-bold mb-4">Why Work at Scovatics?</h2>
           <div className="grid md:grid-cols-3 gap-6">
             <div className="text-center">
@@ -80,29 +88,42 @@ const Careers = () => {
 
         <h2 className="text-2xl font-bold mb-8 text-center">Open Positions</h2>
         <div className="grid gap-6">
-          {openings.map((job, index) => (
-            <Card key={index} className="bg-gradient-card border-border hover-lift">
-              <CardHeader>
-                <div className="flex flex-wrap justify-between items-start gap-4">
-                  <div className="flex-1">
-                    <CardTitle className="text-xl mb-2">{job.title}</CardTitle>
-                    <div className="flex flex-wrap gap-2 mb-3">
-                      <Badge variant="secondary">{job.department}</Badge>
-                      <Badge variant="outline">{job.type}</Badge>
+          {openings.map((job, index) => {
+            const { ref, isVisible } = useScrollAnimation({ threshold: 0.2 });
+            
+            return (
+              <div
+                key={index}
+                ref={ref}
+                className={`transition-all duration-700 ${
+                  isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
+                }`}
+                style={{ transitionDelay: `${index * 100}ms` }}
+              >
+                <Card className="bg-gradient-card border-border hover-lift">
+                  <CardHeader>
+                    <div className="flex flex-wrap justify-between items-start gap-4">
+                      <div className="flex-1">
+                        <CardTitle className="text-xl mb-2">{job.title}</CardTitle>
+                        <div className="flex flex-wrap gap-2 mb-3">
+                          <Badge variant="secondary">{job.department}</Badge>
+                          <Badge variant="outline">{job.type}</Badge>
+                        </div>
+                        <div className="flex items-center text-sm text-muted-foreground">
+                          <MapPin className="w-4 h-4 mr-1" />
+                          {job.location}
+                        </div>
+                      </div>
+                      <Button size="sm">Apply Now</Button>
                     </div>
-                    <div className="flex items-center text-sm text-muted-foreground">
-                      <MapPin className="w-4 h-4 mr-1" />
-                      {job.location}
-                    </div>
-                  </div>
-                  <Button size="sm">Apply Now</Button>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">{job.description}</p>
-              </CardContent>
-            </Card>
-          ))}
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground">{job.description}</p>
+                  </CardContent>
+                </Card>
+              </div>
+            );
+          })}
         </div>
       </Section>
     </>

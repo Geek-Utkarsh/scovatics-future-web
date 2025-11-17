@@ -1,8 +1,6 @@
 import Hero from "@/components/Hero";
 import Section from "@/components/Section";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Calendar } from "lucide-react";
+import ArticleCard from "@/components/ArticleCard";
 
 const Resources = () => {
   const articles = [
@@ -44,14 +42,6 @@ const Resources = () => {
     }
   ];
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
-  };
-
   return (
     <>
       <Hero
@@ -63,25 +53,7 @@ const Resources = () => {
       <Section>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {articles.map((article, index) => (
-            <Card key={index} className="bg-gradient-card border-border hover-lift cursor-pointer">
-              <CardHeader>
-                <div className="flex justify-between items-start mb-2">
-                  <Badge variant="secondary">{article.category}</Badge>
-                </div>
-                <CardTitle className="text-xl hover:text-primary transition-colors">
-                  {article.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <CardDescription className="text-muted-foreground">
-                  {article.excerpt}
-                </CardDescription>
-                <div className="flex items-center text-sm text-muted-foreground">
-                  <Calendar className="w-4 h-4 mr-2" />
-                  {formatDate(article.date)}
-                </div>
-              </CardContent>
-            </Card>
+            <ArticleCard key={index} {...article} delay={index * 100} />
           ))}
         </div>
       </Section>

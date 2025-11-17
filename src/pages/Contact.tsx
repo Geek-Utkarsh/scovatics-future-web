@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { useState } from "react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -14,6 +15,9 @@ const Contact = () => {
     company: "",
     message: ""
   });
+
+  const { ref: formRef, isVisible: formVisible } = useScrollAnimation({ threshold: 0.1 });
+  const { ref: infoRef, isVisible: infoVisible } = useScrollAnimation({ threshold: 0.1 });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,7 +43,12 @@ const Contact = () => {
       <Section>
         <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Contact Form */}
-          <div>
+          <div
+            ref={formRef}
+            className={`transition-all duration-700 ${
+              formVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
+            }`}
+          >
             <h2 className="text-2xl font-bold mb-6">Send Us a Message</h2>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
@@ -94,7 +103,12 @@ const Contact = () => {
           </div>
 
           {/* Contact Information */}
-          <div>
+          <div
+            ref={infoRef}
+            className={`transition-all duration-700 delay-200 ${
+              infoVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
+            }`}
+          >
             <h2 className="text-2xl font-bold mb-6">Contact Information</h2>
             <div className="space-y-6">
               <div className="flex items-start gap-4">
