@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-wireframe.jpg";
+import { useParallax } from "@/hooks/useParallax";
 
 interface HeroProps {
   title: string;
@@ -11,6 +12,8 @@ interface HeroProps {
 }
 
 const Hero = ({ title, subtitle, ctaText, ctaLink, showImage = true }: HeroProps) => {
+  const parallaxOffset = useParallax({ speed: 0.5, enabled: showImage });
+
   return (
     <section className="relative min-h-[600px] flex items-center justify-center bg-gradient-hero overflow-hidden">
       {showImage && (
@@ -19,11 +22,15 @@ const Hero = ({ title, subtitle, ctaText, ctaLink, showImage = true }: HeroProps
             src={heroImage}
             alt="AI Wireframe"
             className="w-full h-full object-cover"
+            style={{ transform: `translateY(${parallaxOffset}px)` }}
           />
         </div>
       )}
       
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/80" />
+      <div 
+        className="absolute inset-0 bg-gradient-to-b from-transparent to-background/80"
+        style={{ transform: `translateY(${parallaxOffset * 0.3}px)` }}
+      />
       
       <div className="container mx-auto px-4 py-20 relative z-10">
         <div className="max-w-3xl mx-auto text-center">
