@@ -2,101 +2,115 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Scovatics Design System - Teal/Silver Circuit-Board Aesthetic */
 
 @layer base {
   :root {
-    --background: 220 70% 8%;
-    --foreground: 220 10% 95%;
+    /* Core Background - Deep black with subtle warmth */
+    --background: 0 0% 2%;
+    --foreground: 0 0% 95%;
 
-    --card: 220 60% 12%;
-    --card-foreground: 220 10% 95%;
+    /* Card surfaces */
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 95%;
 
-    --popover: 220 60% 12%;
-    --popover-foreground: 220 10% 95%;
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 95%;
 
-    --primary: 180 100% 50%;
-    --primary-foreground: 220 70% 8%;
+    /* Primary - Teal Neon (#00F2FF) */
+    --primary: 183 100% 50%;
+    --primary-foreground: 0 0% 2%;
 
-    --secondary: 220 30% 20%;
-    --secondary-foreground: 220 10% 95%;
+    /* Secondary - Metallic Silver */
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 75%;
 
-    --muted: 220 30% 18%;
-    --muted-foreground: 220 10% 60%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 55%;
 
-    --accent: 180 100% 50%;
-    --accent-foreground: 220 70% 8%;
+    /* Accent - Teal Cyan (#0CE0C2) */
+    --accent: 170 93% 46%;
+    --accent-foreground: 0 0% 2%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 220 10% 95%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 95%;
 
-    --border: 220 30% 25%;
-    --input: 220 30% 20%;
-    --ring: 180 100% 50%;
+    --border: 0 0% 15%;
+    --input: 0 0% 10%;
+    --ring: 183 100% 50%;
 
     --radius: 0.5rem;
 
-    /* Custom Design Tokens */
-    --navy-deep: 220 70% 8%;
-    --slate-dark: 220 30% 15%;
-    --silver: 220 10% 60%;
-    --teal-neon: 180 100% 50%;
-    --teal-glow: 180 100% 40%;
+    /* Scovatics Brand Tokens */
+    --teal-neon: 183 100% 50%;
+    --teal-cyan: 170 93% 46%;
+    --teal-deep: 180 100% 35%;
+    --silver-metallic: 0 0% 75%;
+    --silver-dark: 0 0% 55%;
+    --charcoal: 0 0% 10%;
+    --void: 0 0% 2%;
     
     /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(220 70% 8%), hsl(220 60% 12%), hsl(220 50% 15%));
-    --gradient-card: linear-gradient(145deg, hsl(220 60% 12%), hsl(220 50% 10%));
-    --gradient-accent: linear-gradient(90deg, hsl(180 100% 50%), hsl(180 80% 55%));
+    --gradient-teal: linear-gradient(135deg, hsl(183 100% 50%), hsl(170 93% 46%));
+    --gradient-bg: linear-gradient(180deg, hsl(0 0% 2%), hsl(0 0% 10%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 8%), hsl(0 0% 5%));
+    --gradient-hero: radial-gradient(ellipse at 50% 0%, hsl(183 100% 50% / 0.15), transparent 60%), linear-gradient(180deg, hsl(0 0% 2%), hsl(0 0% 6%));
     
-    /* Effects */
-    --glow-teal: 0 0 20px hsl(180 100% 50% / 0.5), 0 0 40px hsl(180 100% 50% / 0.3);
-    --shadow-card: 0 8px 32px hsl(220 70% 5% / 0.5);
-    --shadow-elevated: 0 20px 60px hsl(220 70% 5% / 0.7);
+    /* Glow Effects */
+    --glow-teal: 0 0 20px hsl(183 100% 50% / 0.5), 0 0 40px hsl(183 100% 50% / 0.3), 0 0 60px hsl(183 100% 50% / 0.1);
+    --glow-subtle: 0 0 10px hsl(183 100% 50% / 0.3);
+    --glow-intense: 0 0 30px hsl(183 100% 50% / 0.6), 0 0 60px hsl(183 100% 50% / 0.4);
     
-    /* Animations */
+    /* Shadows */
+    --shadow-card: 0 8px 32px hsl(0 0% 0% / 0.6), 0 0 0 1px hsl(0 0% 15% / 0.5);
+    --shadow-elevated: 0 20px 60px hsl(0 0% 0% / 0.8);
+    
+    /* Circuit-board border effect */
+    --border-circuit: 1px solid hsl(183 100% 50% / 0.3);
+    
+    /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
-    --sidebar-background: 220 60% 10%;
-    --sidebar-foreground: 220 10% 95%;
-    --sidebar-primary: 180 100% 50%;
-    --sidebar-primary-foreground: 220 70% 8%;
-    --sidebar-accent: 220 30% 18%;
-    --sidebar-accent-foreground: 220 10% 95%;
-    --sidebar-border: 220 30% 25%;
-    --sidebar-ring: 180 100% 50%;
+    /* Sidebar */
+    --sidebar-background: 0 0% 4%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 183 100% 50%;
+    --sidebar-primary-foreground: 0 0% 2%;
+    --sidebar-accent: 0 0% 12%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 183 100% 50%;
   }
 
   .dark {
-    --background: 220 70% 8%;
-    --foreground: 220 10% 95%;
-    --card: 220 60% 12%;
-    --card-foreground: 220 10% 95%;
-    --popover: 220 60% 12%;
-    --popover-foreground: 220 10% 95%;
-    --primary: 180 100% 50%;
-    --primary-foreground: 220 70% 8%;
-    --secondary: 220 30% 20%;
-    --secondary-foreground: 220 10% 95%;
-    --muted: 220 30% 18%;
-    --muted-foreground: 220 10% 60%;
-    --accent: 180 100% 50%;
-    --accent-foreground: 220 70% 8%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 220 10% 95%;
-    --border: 220 30% 25%;
-    --input: 220 30% 20%;
-    --ring: 180 100% 50%;
-    --sidebar-background: 220 60% 10%;
-    --sidebar-foreground: 220 10% 95%;
-    --sidebar-primary: 180 100% 50%;
-    --sidebar-primary-foreground: 220 70% 8%;
-    --sidebar-accent: 220 30% 18%;
-    --sidebar-accent-foreground: 220 10% 95%;
-    --sidebar-border: 220 30% 25%;
-    --sidebar-ring: 180 100% 50%;
+    --background: 0 0% 2%;
+    --foreground: 0 0% 95%;
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 95%;
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 183 100% 50%;
+    --primary-foreground: 0 0% 2%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 75%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 55%;
+    --accent: 170 93% 46%;
+    --accent-foreground: 0 0% 2%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 95%;
+    --border: 0 0% 15%;
+    --input: 0 0% 10%;
+    --ring: 183 100% 50%;
+    --sidebar-background: 0 0% 4%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 183 100% 50%;
+    --sidebar-primary-foreground: 0 0% 2%;
+    --sidebar-accent: 0 0% 12%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 183 100% 50%;
   }
 }
 
@@ -108,27 +122,63 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
     scroll-behavior: smooth;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
 }
 
 @layer utilities {
+  /* Teal Glow Effects */
   .glow-teal {
     box-shadow: var(--glow-teal);
   }
   
-  .text-glow {
-    text-shadow: 0 0 10px hsl(180 100% 50% / 0.5);
+  .glow-subtle {
+    box-shadow: var(--glow-subtle);
   }
   
+  .glow-intense {
+    box-shadow: var(--glow-intense);
+  }
+  
+  .text-glow {
+    text-shadow: 0 0 20px hsl(183 100% 50% / 0.6), 0 0 40px hsl(183 100% 50% / 0.3);
+  }
+  
+  .text-glow-subtle {
+    text-shadow: 0 0 10px hsl(183 100% 50% / 0.4);
+  }
+
+  /* Gradient Text */
+  .text-gradient-teal {
+    background: linear-gradient(135deg, hsl(183 100% 50%), hsl(170 93% 46%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-silver {
+    color: hsl(0 0% 75%);
+  }
+  
+  /* Hover Effects */
   .hover-lift {
     @apply transition-all duration-300 hover:-translate-y-2;
-    box-shadow: 0 8px 32px hsl(220 70% 5% / 0.5);
+    box-shadow: var(--shadow-card);
   }
   
   .hover-lift:hover {
-    box-shadow: 0 20px 60px hsl(220 70% 5% / 0.7);
+    box-shadow: var(--shadow-elevated), var(--glow-subtle);
+  }
+
+  .hover-glow {
+    @apply transition-all duration-300;
+  }
+
+  .hover-glow:hover {
+    box-shadow: var(--glow-teal);
   }
   
+  /* Background Effects */
   .bg-gradient-hero {
     background: var(--gradient-hero);
   }
@@ -136,7 +186,69 @@ All colors MUST be HSL.
   .bg-gradient-card {
     background: var(--gradient-card);
   }
+
+  .bg-gradient-teal {
+    background: var(--gradient-teal);
+  }
+
+  /* Circuit Board Pattern */
+  .circuit-border {
+    border: var(--border-circuit);
+    position: relative;
+  }
+
+  .circuit-border::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 20%;
+    right: 20%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(183 100% 50% / 0.6), transparent);
+  }
+
+  .circuit-corner {
+    position: relative;
+  }
+
+  .circuit-corner::before,
+  .circuit-corner::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-color: hsl(183 100% 50% / 0.4);
+    border-style: solid;
+  }
+
+  .circuit-corner::before {
+    top: -1px;
+    left: -1px;
+    border-width: 2px 0 0 2px;
+  }
+
+  .circuit-corner::after {
+    bottom: -1px;
+    right: -1px;
+    border-width: 0 2px 2px 0;
+  }
+
+  /* Node dots */
+  .circuit-node {
+    position: relative;
+  }
+
+  .circuit-node::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: hsl(183 100% 50%);
+    border-radius: 50%;
+    box-shadow: 0 0 10px hsl(183 100% 50% / 0.8);
+  }
   
+  /* Animations */
   .animate-fade-in-up {
     animation: fadeInUp 0.6s ease-out forwards;
   }
@@ -161,6 +273,14 @@ All colors MUST be HSL.
   
   .slide-in-right-scroll {
     animation: slideInRight 0.8s ease-out forwards;
+  }
+
+  .animate-pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  .animate-circuit-line {
+    animation: circuitLine 3s ease-in-out infinite;
   }
 }
 
@@ -203,5 +323,23 @@ All colors MUST be HSL.
   to {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px hsl(183 100% 50% / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px hsl(183 100% 50% / 0.6), 0 0 60px hsl(183 100% 50% / 0.3);
+  }
+}
+
+@keyframes circuitLine {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
   }
 }

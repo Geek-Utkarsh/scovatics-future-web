@@ -1,4 +1,3 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { LucideIcon } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
@@ -15,22 +14,30 @@ const FeatureCard = ({ icon: Icon, title, description, delay = 0 }: FeatureCardP
   return (
     <div
       ref={ref}
-      className={`transition-all duration-700 ${
+      className={`group relative p-6 rounded-lg bg-gradient-card border border-border/30 hover-lift transition-all duration-500 ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}
       style={{ transitionDelay: `${delay}ms` }}
     >
-      <Card className="bg-gradient-card border-border hover-lift group h-full">
-        <CardHeader>
-          <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:glow-teal transition-all">
-            <Icon className="w-6 h-6 text-primary" />
-          </div>
-          <CardTitle className="text-xl">{title}</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <CardDescription className="text-muted-foreground">{description}</CardDescription>
-        </CardContent>
-      </Card>
+      {/* Corner accents */}
+      <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-primary/40 rounded-tl-lg" />
+      <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-primary/40 rounded-br-lg" />
+      
+      {/* Icon container */}
+      <div className="relative mb-4">
+        <div className="w-14 h-14 rounded-lg bg-primary/10 border border-primary/30 flex items-center justify-center group-hover:bg-primary/20 group-hover:border-primary/50 transition-all duration-300">
+          <Icon className="h-7 w-7 text-primary group-hover:scale-110 transition-transform duration-300" />
+        </div>
+        {/* Glow effect on hover */}
+        <div className="absolute inset-0 w-14 h-14 rounded-lg bg-primary/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      </div>
+      
+      <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+        {title}
+      </h3>
+      <p className="text-silver-dark text-sm leading-relaxed">
+        {description}
+      </p>
     </div>
   );
 };
