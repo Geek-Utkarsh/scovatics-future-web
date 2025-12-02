@@ -1,4 +1,3 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { LucideIcon } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
@@ -15,24 +14,28 @@ const IndustryCard = ({ icon: Icon, title, description, delay = 0 }: IndustryCar
   return (
     <div
       ref={ref}
-      className={`transition-all duration-700 ${
+      className={`group relative p-6 rounded-lg bg-gradient-card border border-border/30 hover-lift transition-all duration-500 ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}
       style={{ transitionDelay: `${delay}ms` }}
     >
-      <Card className="bg-gradient-card border-border hover-lift h-full">
-        <CardHeader>
-          <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-            <Icon className="w-6 h-6 text-primary" />
-          </div>
-          <CardTitle>{title}</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <CardDescription className="text-muted-foreground">
+      {/* Circuit corner accents */}
+      <div className="absolute top-0 right-0 w-8 h-8 border-t border-r border-primary/30 rounded-tr-lg" />
+      <div className="absolute bottom-0 left-0 w-8 h-8 border-b border-l border-primary/30 rounded-bl-lg" />
+      
+      <div className="flex items-start gap-4">
+        <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/30 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 group-hover:border-primary/50 transition-all duration-300">
+          <Icon className="h-6 w-6 text-primary" />
+        </div>
+        <div>
+          <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+            {title}
+          </h3>
+          <p className="text-silver-dark text-sm leading-relaxed">
             {description}
-          </CardDescription>
-        </CardContent>
-      </Card>
+          </p>
+        </div>
+      </div>
     </div>
   );
 };

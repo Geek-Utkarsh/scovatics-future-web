@@ -1,7 +1,5 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Calendar } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { ArrowRight, Calendar, Tag } from "lucide-react";
 
 interface ArticleCardProps {
   title: string;
@@ -14,42 +12,55 @@ interface ArticleCardProps {
 const ArticleCard = ({ title, category, date, excerpt, delay = 0 }: ArticleCardProps) => {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.2 });
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
+  const formatDate = (dateStr: string) => {
+    return new Date(dateStr).toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric'
     });
   };
 
   return (
-    <div
+    <article
       ref={ref}
-      className={`transition-all duration-700 ${
+      className={`group relative rounded-lg bg-gradient-card border border-border/30 overflow-hidden hover-lift transition-all duration-500 cursor-pointer ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}
       style={{ transitionDelay: `${delay}ms` }}
     >
-      <Card className="bg-gradient-card border-border hover-lift cursor-pointer h-full">
-        <CardHeader>
-          <div className="flex justify-between items-start mb-2">
-            <Badge variant="secondary">{category}</Badge>
-          </div>
-          <CardTitle className="text-xl hover:text-primary transition-colors">
-            {title}
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <CardDescription className="text-muted-foreground">
-            {excerpt}
-          </CardDescription>
-          <div className="flex items-center text-sm text-muted-foreground">
-            <Calendar className="w-4 h-4 mr-2" />
+      {/* Hover accent */}
+      <div className="absolute top-0 left-0 w-0 h-1 bg-gradient-to-r from-primary to-accent group-hover:w-full transition-all duration-500" />
+      
+      <div className="p-6">
+        {/* Meta info */}
+        <div className="flex items-center gap-4 mb-4 text-xs">
+          <span className="inline-flex items-center gap-1.5 text-primary bg-primary/10 px-2.5 py-1 rounded-full font-medium">
+            <Tag className="h-3 w-3" />
+            {category}
+          </span>
+          <span className="inline-flex items-center gap-1.5 text-silver-dark">
+            <Calendar className="h-3 w-3" />
             {formatDate(date)}
-          </div>
-        </CardContent>
-      </Card>
-    </div>
+          </span>
+        </div>
+
+        {/* Title */}
+        <h3 className="text-lg font-semibold text-foreground mb-3 group-hover:text-primary transition-colors line-clamp-2">
+          {title}
+        </h3>
+
+        {/* Excerpt */}
+        <p className="text-silver-dark text-sm leading-relaxed mb-4 line-clamp-3">
+          {excerpt}
+        </p>
+
+        {/* Read more */}
+        <div className="flex items-center gap-2 text-primary text-sm font-medium group-hover:gap-3 transition-all">
+          <span>Read More</span>
+          <ArrowRight className="h-4 w-4" />
+        </div>
+      </div>
+    </article>
   );
 };
 
